@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add New Video Game</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h2>Add New Video Game</h2>
+
+{{#errorMsg}}
+<div class="alert alert-danger">
+  {{.}}
+</div>
+{{/errorMsg}}
+
+<form action="/new_videogame/" method="POST">
+  <p>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+  </p>
+
+  <p>
+    <label for="release_date">Release date:</label>
+    <input type="text" id="release_date" name="release_date" />
+  </p>
+
+  <p>
+    <label for="genre">Genre:</label>
+    <input type="number" id="genre" name="genre" />
+  </p>
+
+  <p>
+    <label for="esrbRating">ESRB rating:</label>
+    <input type="number" id="esrbRating" name="esrbRating" />
+  </p>
+  <p>
+    <label for="publisher">Publisher:</label>
+    <input type="number" id="publisher" name="publisher" />
+  </p>
+  <p>
+    <label for="platform">Platform:</label>
+    <input type="number" id="platform" name="platform" />
+  </p>
+  <p>
+    <label for="ignRating">IGN rating:</label>
+    <input type="number" id="ignRating" name="ignRating" />
+  </p>
+  <p>
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" />
+  </p>
+  <p>
+    <label for="players">Players:</label>
+    <input type="number" id="players" name="players" />
+  </p>
+  <p>
+    <label for="characters">Characters:</label>
+    <input type="number" id="characters" name="characters" />
+  </p>
+
+  <p>
+    <button type="submit">Add Video Game</button>
+  </p>
+</form>
+  </body>
+</html>

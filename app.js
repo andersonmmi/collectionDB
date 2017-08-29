@@ -30,21 +30,42 @@ app.get('/new/', function (req, res) {
 
 // build app.post /new/ here
 app.post('/new/', function (req, res) {
-  Recipe.create(req.body)
-  .then(function (recipe) {
+  console.log("attempting add");
+  Videogames.create(req.body)
+  .then(function (videogames) {
     res.redirect('/');
   })
   .catch(function (error) {
     let errorMsg;
     if (error.code === DUPLICATE_RECORD_ERROR) {
       // make message about duplicate
-      errorMsg = `The recipe name "${req.body.name}" has already been used.`
+      errorMsg = `This video game "${req.body.name}" has already been added.`
     } else {
       errorMsg = "You have encountered an unknown error."
     }
     res.render('new_videogame', {errorMsg: errorMsg});
   })
 });
+
+// build app.get /details/ here
+app.post('/videogame_details/', function (req, res) {
+  Videogames.create(req.body)
+  .then(function (videogames) {
+    res.redirect('/');
+  })
+  .catch(function (error) {
+    let errorMsg;
+    if (error.code === DUPLICATE_RECORD_ERROR) {
+      // make message about duplicate
+      errorMsg = `This video game "${req.body.name}" has already been added.`
+    } else {
+      errorMsg = "You have encountered an unknown error."
+    }
+    res.render('new_videogame', {errorMsg: errorMsg});
+  })
+});
+
+// build app.post /details/ here
 
 //build app.listen here
  app.listen(3000, function() {
