@@ -13,7 +13,7 @@ const collectionSchema = new mongoose.Schema({
     min: {type: Number, default: 1},
     max: Number,
     multiPlayer: Boolean
-  }
+  },
   characters: [{name: String, npc: Boolean, enemy: Boolean}],
 })
 

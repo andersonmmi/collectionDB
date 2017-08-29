@@ -6,7 +6,7 @@ mongoose.Promise = require('bluebird');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
 
-const Videogames = require("model");
+const Videogames = require("./model");
 
 const app = express();
 mongoose.connect('mongodb://localhost:27017/games_list');
@@ -14,16 +14,39 @@ mongoose.connect('mongodb://localhost:27017/games_list');
 app.engine('mustache', mustacheExpress());
 app.set('views', './views')
 app.set('view engine', 'mustache')
-app.set('layout', 'layout')
 
 app.use('/public', express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/new/:name', function(req, res){
-   const game = new Boardgame({name: req.param.name})
-   game.save
+//build app.get root here
+app.get('/', function(req, res){
+   res.render('index');
  })
 
- app.listen(port, function() {
+// build app.get /new/ here
+app.get('/new/', function (req, res) {
+  res.render('new_videogame');
+});
+
+// build app.post /new/ here
+app.post('/new/', function (req, res) {
+  Recipe.create(req.body)
+  .then(function (recipe) {
+    res.redirect('/');
+  })
+  .catch(function (error) {
+    let errorMsg;
+    if (error.code === DUPLICATE_RECORD_ERROR) {
+      // make message about duplicate
+      errorMsg = `The recipe name "${req.body.name}" has already been used.`
+    } else {
+      errorMsg = "You have encountered an unknown error."
+    }
+    res.render('new_videogame', {errorMsg: errorMsg});
+  })
+});
+
+//build app.listen here
+ app.listen(3000, function() {
    console.log('Example listening on port 3000')
  })
