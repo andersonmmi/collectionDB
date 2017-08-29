@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const collectionSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   name: {type: String, required: true, unique: true},
   release_date: Number,
   genre: String,
@@ -17,6 +17,6 @@ const collectionSchema = new mongoose.Schema({
   characters: [{name: String, npc: Boolean, enemy: Boolean}],
 })
 
-const Videogames = mongoose.model('Videogames', collectionSchema);
+const Videogame = mongoose.model('Videogame', schema);
 
-module.export = Videogames;
+module.exports = Videogame;

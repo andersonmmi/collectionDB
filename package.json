@@ -1,7 +1,7 @@
 {
-  "name": "collectionDB",
+  "name": "collectiondb",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a read/write database for video games in my collection",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +11,19 @@
     "url": "git+https://github.com/andersonmmi/collectionDB.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aaron Anderson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andersonmmi/collectionDB/issues"
   },
-  "homepage": "https://github.com/andersonmmi/collectionDB#readme"
+  "homepage": "https://github.com/andersonmmi/collectionDB#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.9",
+    "mustache-express": "^1.2.5"
+  },
+  "devDependencies": {}
 }
