@@ -15,10 +15,8 @@ const Videogame = require("./models/model");
 const DUPLICATE_RECORD_ERROR = 11000;
 
 const app = express();
-MongoClient.connect(mongoURL, function(err,db){
-  const videogames = db.collection('videogames');
-});
-mongoose.Promise = require('bluebird')
+mongoose.Promise = require('bluebird');
+mongoose.connect(mongoURL);
 
 app.engine('mustache', mustacheExpress());
 app.set('views', './views')
@@ -29,13 +27,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //build app.get root here
 app.get('/', function(req, res){
-    MongoClient.connect(mongoURL, function(err,db){
-      const videogames = db.collection('videogames');
-      videogames.find({}).toArray(function (err, docs){
-      res.render('index',{Videogame: videogames});
+      Videogame.find().then(function (videogames){
+      res.render('index',{videogames});
     })
-  })
-});
+  });
 
 // build app.get /new_videogame/ here
 app.get('/new_videogame/', function (req, res) {
@@ -63,6 +58,11 @@ app.post('/new_videogame/', function (req, res) {
   });
 
 // build app.get /details/ here
+app.get('/videogame_details/:_id', function(req,res){
+  Videogame.find(req.body._id).then(function (videogames){
+    res.render('videogame_details',{videogames})
+  })
+});
 // app.post('/videogame_details/', function (req, res) {
 //   Videogames.create(req.body)
 //   .then(function (videogames) {
