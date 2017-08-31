@@ -33,15 +33,15 @@ app.get('/', function(req, res){
   });
 
 // build app.get /new_videogame/ here
-app.get('/new_videogame/', function (req, res) {
-  res.render('new_videogame');
+app.get('/new_videogame/:_id', function (req, res) {
+  res.render('new_videogame',{videogame});
 });
 
 // build app.post /new_videogame/ here
 app.post('/new_videogame/', function (req, res) {
   console.log("attempting add");
   console.log(req.body.name);
-  Videogame.create({name: req.body.name})
+  Videogame.create({gameName: req.body.name})
   .then(function (videogame) {
     res.redirect('/');
   })
@@ -59,6 +59,7 @@ app.post('/new_videogame/', function (req, res) {
 
 // build app.get /details/ here
 app.get('/videogame_details/:_id', function(req,res){
+  console.log(req.body);
   Videogame.find(req.body._id).then(function (videogames){
     res.render('videogame_details',{videogames})
   })

@@ -7,21 +7,22 @@
   </head>
   <body>
     <h2>Video Game Details</h2>
+    {{#videogames}}
+      <p>{{gameName}}</p>
+      <p>{{release_date}}</p>
+      <p>{{genre}}</p>
+      <p>{{esrbRating}}</p>
+      <p>{{publisher}}</p>
+      <p>{{platform}}</p>
+      <p>{{ignRating}}</p>
+      <p>{{price}}</p>
+      <p>{{players}}</p>
+      <p>{{characters}}</p>
+      <p>
+        <a href="/new_videogame/{{id}}">Edit Details</a>
+      </p>
 
-    <p>{{name}}</p>
-    <p>{{release_date}}</p>
-    <p>{{genre}}</p>
-    <p>{{esrbRating}}</p>
-    <p>{{publisher}}</p>
-    <p>{{platform}}</p>
-    <p>{{ignRating}}</p>
-    <p>{{price}}</p>
-    <p>{{players}}</p>
-    <p>{{characters}}</p>
-
-  <p>
-    <button type="submit">Edit these details</button>
-  </p>
+  {{/videogames}}
 </form>
   </body>
 </html>
